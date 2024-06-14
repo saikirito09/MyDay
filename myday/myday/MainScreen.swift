@@ -12,10 +12,13 @@ struct MainScreen: View {
                     switch selectedTab {
                     case 0:
                         HomeView()
+                            .environmentObject(NavigationModel())
                     case 2:
                         ProfileView()
+                            .environmentObject(NavigationModel())
                     default:
                         HomeView()
+                            .environmentObject(NavigationModel())
                     }
                 }
                 Spacer()
@@ -40,17 +43,9 @@ struct MainScreen: View {
     }
 }
 
-struct ProfileView: View {
-    var body: some View {
-        Text("Profile Screen")
-            .font(.largeTitle)
-            .padding()
-    }
-}
-
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
         MainScreen()
+            .environmentObject(NavigationModel())
     }
 }
-

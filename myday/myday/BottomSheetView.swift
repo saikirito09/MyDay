@@ -5,6 +5,8 @@ struct BottomSheetView: View {
     @State private var offset = CGSize.zero
     @State private var heightPercentage: CGFloat = 0.6
     @State private var textFieldContent: String = ""
+    @State private var mood: String = "" // Add mood state
+    @EnvironmentObject var navigationModel: NavigationModel
     
     var body: some View {
         GeometryReader { geometry in
@@ -17,6 +19,13 @@ struct BottomSheetView: View {
                     .cornerRadius(10)
                     .padding(.horizontal)
                     .padding(.top)
+                
+                TextField("Mood", text: $mood) // Add mood text field
+                    .font(.system(size: 20))
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal)
                 
                 Spacer()
                 
@@ -35,7 +44,8 @@ struct BottomSheetView: View {
                     Spacer()
                     
                     IconButton(action: {
-                        // Correct action
+                        addEntry()
+                        showBottomSheet.toggle()
                     }, imageName: "checkmark", backgroundColor: Color.green)
                     
                     Spacer()
@@ -63,6 +73,13 @@ struct BottomSheetView: View {
             .animation(.easeInOut, value: offset)
         }
     }
+    
+    private func addEntry() {
+        let newEntry = JournalEntry(user: navigationModel.username, text: textFieldContent, mood: mood, tags: [], createdAt: Date())
+        navigationModel.addEntry(entry: newEntry)
+        textFieldContent = ""
+        mood = ""
+    }
 }
 
 struct IconButton: View {
@@ -85,4 +102,3 @@ struct IconButton: View {
         }
     }
 }
-

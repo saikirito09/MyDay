@@ -2,12 +2,11 @@ import SwiftUI
 
 struct RegisterView: View {
     @State private var username = ""
-    @State private var email = ""
     @State private var password = ""
     @State private var confirmPassword = ""
     @State private var showAlert = false
     @State private var errorMessage = ""
-    @State private var isRegistered = false // State variable to control navigation
+    @EnvironmentObject var navigationModel: NavigationModel
 
     var body: some View {
         NavigationStack {
@@ -30,7 +29,7 @@ struct RegisterView: View {
 
                 VStack(spacing: 20) {
                     // Title
-                    Text("Create An Account")
+                    Text("Create Your Account")
                         .font(.system(size: 40, weight: .bold, design: .default))
                         .padding(.top, 100)
 
@@ -38,14 +37,6 @@ struct RegisterView: View {
                     
                     // Username Field
                     TextField("Username", text: $username)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(15)
-                        .padding(.horizontal, 20)
-
-                    // Email Field
-                    TextField("Email", text: $email)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
                         .background(Color(.systemGray6))
@@ -97,9 +88,6 @@ struct RegisterView: View {
                 .navigationTitle("")
                 .navigationBarHidden(true)
             }
-            .navigationDestination(isPresented: $isRegistered) {
-                MainScreen()
-            }
         }
     }
     
@@ -116,7 +104,7 @@ struct RegisterView: View {
             return
         }
         
-        let body: [String: String] = ["username": username, "email": email, "password": password]
+        let body: [String: String] = ["username": username, "password": password]
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -160,7 +148,7 @@ struct RegisterView: View {
                 if let responseDict = responseJSON as? [String: Any], let token = responseDict["token"] as? String {
                     DispatchQueue.main.async {
                         // Store the token or handle the successful registration
-                        isRegistered = true // Navigate to MainView on successful registration
+                        navigationModel.login(username: username, token: token) // Pass the token to login method
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -181,5 +169,6 @@ struct RegisterView: View {
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
         RegisterView()
+            .environmentObject(NavigationModel())
     }
 }

@@ -1,18 +1,32 @@
-//
-//  AddEntryView.swift
-//  myday
-//
-//  Created by Sai Mandava on 13/06/24.
-//
-
 import SwiftUI
 
 struct AddEntryView: View {
+    @Binding var newEntryText: String
+    @Binding var newEntryMood: String
+    var onAdd: () -> Void
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TextField("Entry text", text: $newEntryText)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            TextField("Mood", text: $newEntryMood)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            Button(action: onAdd) {
+                Text("Add Entry")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+            .padding()
+        }
     }
 }
 
-#Preview {
-    AddEntryView()
+struct AddEntryView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddEntryView(newEntryText: .constant(""), newEntryMood: .constant(""), onAdd: {})
+    }
 }

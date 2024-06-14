@@ -1,18 +1,29 @@
-//
-//  HeaderView.swift
-//  myday
-//
-//  Created by Sai Mandava on 13/06/24.
-//
-
 import SwiftUI
 
 struct HeaderView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    var greeting: String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        switch hour {
+        case 6..<12:
+            return "Good Morning"
+        case 12..<17:
+            return "Good Afternoon"
+        case 17..<22:
+            return "Good Evening"
+        default:
+            return "Good Night"
+        }
     }
-}
-
-#Preview {
-    HeaderView()
+    
+    var body: some View {
+        HStack {
+            Text(greeting)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            Spacer()
+            Image(systemName: "magnifyingglass")
+                .font(.title)
+        }
+        .padding(.top)
+    }
 }

@@ -3,85 +3,58 @@ import SwiftUI
 struct LoginView: View {
     @State private var username = ""
     @State private var password = ""
+    @State private var wrongUsername: Float = 0
+    @State private var wrongPassword: Float  = 0
     @State private var showAlert = false
     @State private var errorMessage = ""
-    @State private var isLoggedIn = false // State variable to control navigation
+    @EnvironmentObject var navigationModel: NavigationModel
 
     var body: some View {
         NavigationStack {
             ZStack {
-                // Background color
-                Color.white
-                    .edgesIgnoringSafeArea(.all)
-                
-                // Top left circle
-                GeometryReader { geometry in
-                    Circle()
-                        .fill(RadialGradient(gradient: Gradient(colors: [Color.red, Color.clear]), center: .center, startRadius: 0, endRadius: 200))
-                        .frame(width: 300, height: 300)
-                        .position(x: 150, y: 150)
-                        .blur(radius: 30)
-                }
-                
-                // Bottom right circle
-                GeometryReader { geometry in
-                    Circle()
-                        .fill(RadialGradient(gradient: Gradient(colors: [Color.green, Color.clear]), center: .center, startRadius: 0, endRadius: 200))
-                        .frame(width: 300, height: 300)
-                        .position(x: geometry.size.width - 150, y: geometry.size.height - 150)
-                        .blur(radius: 30)
-                }
+                // More colorful background
+                LinearGradient(gradient: Gradient(colors: [.blue, .purple, .pink, .orange]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .ignoresSafeArea()
+                Circle()
+                    .scale(1.7)
+                    .foregroundColor(.white.opacity(0.15))
+                Circle()
+                    .scale(1.35)
+                    .foregroundColor(.white)
 
-                VStack(spacing: 20) {
-                    // Title
-                    Text("Welcome Back")
-                        .font(.system(size: 40, weight: .bold, design: .default))
-                        .padding(.top, 100)
-
-                    Spacer()
+                VStack {
+                    Text("Login")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding()
                     
-                    // Username Field
                     TextField("Username", text: $username)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .focused($isUsernameFocused)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                        .border(Color.red, width: CGFloat(max(0, wrongUsername)))
                     
-                    // Password Field
                     SecureField("Password", text: $password)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .focused($isPasswordFocused)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                        .border(Color.red, width: CGFloat(max(0, wrongPassword)))
                     
-                    // Login Button
-                    Button(action: {
+                    Button("Login") {
                         loginUser()
-                    }) {
-                        Text("Login")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20, weight: .bold, design: .default))
-                            .frame(width: 200, height: 50)
-                            .background(Color(red: 0.6, green: 0.8, blue: 0.9)) // Light blue color
-                            .cornerRadius(15)
                     }
-                    .alert(isPresented: $showAlert) {
-                        Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
-                    }
-                    .padding()
-
-                    // Navigation to RegisterView
-                    NavigationLink(destination: RegisterView()) {
-                        Text("Don't have an account? Register")
-                            .foregroundColor(.blue)
-                            .font(.system(size: 16, weight: .medium, design: .default))
-                    }
-                    .padding(.top, 10)
-                    
-                    Spacer()
+                    .foregroundColor(.white)
+                    .frame(width: 300, height: 50)
+                    .background(Color.blue)
+                    .cornerRadius(10)
                 }
-                .navigationTitle("")
-                .navigationBarHidden(true)
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+                }
             }
-            .navigationDestination(isPresented: $isLoggedIn) {
-                MainScreen()
-            }
+            .navigationBarHidden(true)
         }
     }
     
@@ -91,21 +64,21 @@ struct LoginView: View {
             showAlert = true
             return
         }
-        
+
         let body: [String: String] = ["username": username, "password": password]
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         guard let httpBody = try? JSONSerialization.data(withJSONObject: body, options: []) else {
             errorMessage = "Error creating JSON body"
             showAlert = true
             return
         }
-        
+
         request.httpBody = httpBody
-        
+
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async {
@@ -114,7 +87,7 @@ struct LoginView: View {
                 }
                 return
             }
-            
+
             guard let data = data else {
                 DispatchQueue.main.async {
                     errorMessage = "No data received"
@@ -122,7 +95,7 @@ struct LoginView: View {
                 }
                 return
             }
-            
+
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
                 DispatchQueue.main.async {
                     errorMessage = "Error: \(HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))"
@@ -130,13 +103,13 @@ struct LoginView: View {
                 }
                 return
             }
-            
+
             do {
                 let responseJSON = try JSONSerialization.jsonObject(with: data, options: [])
                 if let responseDict = responseJSON as? [String: Any], let token = responseDict["token"] as? String {
                     DispatchQueue.main.async {
-                        // Store the token or handle the successful login
-                        isLoggedIn = true // Navigate to MainView on successful login
+                        // Store the token and handle the successful login
+                        navigationModel.login(username: username, token: token) // Pass token to login method
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -157,5 +130,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(NavigationModel())
     }
 }

@@ -1,18 +1,22 @@
-//
-//  JournalEntry.swift
-//  myday
-//
-//  Created by Sai Mandava on 13/06/24.
-//
+import Foundation
 
-import SwiftUI
+struct JournalEntry: Identifiable, Codable {
+    var id: String? // MongoDB ObjectId
+    var user: String
+    var text: String
+    var mood: String
+    var tags: [String]
+    var createdAt: Date = Date() // Default value for createdAt
 
-struct JournalEntry: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    var dateString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
+        return formatter.string(from: createdAt)
     }
-}
 
-#Preview {
-    JournalEntry()
+    var dayString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE"
+        return formatter.string(from: createdAt)
+    }
 }

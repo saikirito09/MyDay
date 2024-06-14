@@ -1,18 +1,23 @@
-//
-//  JournalEntriesView.swift
-//  myday
-//
-//  Created by Sai Mandava on 13/06/24.
-//
-
 import SwiftUI
 
 struct JournalEntriesView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    @EnvironmentObject var navigationModel: NavigationModel
+    var selectedMonth: String
 
-#Preview {
-    JournalEntriesView()
+    var body: some View {
+        ScrollView {
+            if selectedMonth == "This month" {
+                VStack(spacing: 16) {
+                    ForEach(navigationModel.entries) { entry in
+                        JournalEntryView(date: entry.dateString, day: entry.dayString, mood: entry.mood, score: "N/A", text: entry.text)
+                    }
+                }
+            } else {
+                Text("No entries for this month")
+                    .font(.headline)
+                    .foregroundColor(.gray)
+                    .padding()
+            }
+        }
+    }
 }

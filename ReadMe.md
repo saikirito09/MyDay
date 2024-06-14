@@ -1,6 +1,6 @@
 # MyDay - SwiftUI Journal App
 
-MyDay is a simple SwiftUI-based journal application designed to help you keep track of your daily thoughts and activities. It includes user registration and login functionalities with a clean, consistent design.
+MyDay is a simple SwiftUI-based journal application designed to help you keep track of your daily thoughts and activities. It includes user registration and login functionalities with a clean, consistent design inspired by [Mood Tracker Journal & Diary App Design on Dribbble](https://dribbble.com/shots/23904627-Mood-Tracker-Journal-Diary-App-Design).
 
 ## Project Structure
 

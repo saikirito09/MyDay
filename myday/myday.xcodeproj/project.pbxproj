@@ -24,6 +24,14 @@
 		FB2D68292C1A5BBD0015F2A2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2D68282C1A5BBD0015F2A2 /* HomeView.swift */; };
 		FB2D682B2C1A6CB20015F2A2 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2D682A2C1A6CB20015F2A2 /* RoundedCorners.swift */; };
 		FB2D682D2C1A70580015F2A2 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2D682C2C1A70580015F2A2 /* BottomSheetView.swift */; };
+		FB7BFADC2C1BB6EE0012BA5A /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7BFADB2C1BB6EE0012BA5A /* NavigationModel.swift */; };
+		FB7BFADE2C1BB79C0012BA5A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7BFADD2C1BB79C0012BA5A /* ProfileView.swift */; };
+		FB7BFAE02C1BC2330012BA5A /* JournalEntriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7BFADF2C1BC2330012BA5A /* JournalEntriesView.swift */; };
+		FB7BFAE22C1BC2490012BA5A /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7BFAE12C1BC2490012BA5A /* JournalEntry.swift */; };
+		FB7BFAE42C1BC2CF0012BA5A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7BFAE32C1BC2CF0012BA5A /* HeaderView.swift */; };
+		FB7BFAE62C1BC2E80012BA5A /* MonthSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7BFAE52C1BC2E80012BA5A /* MonthSelectorView.swift */; };
+		FB7BFAE82C1BC3580012BA5A /* JournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7BFAE72C1BC3580012BA5A /* JournalEntryView.swift */; };
+		FB7BFAEA2C1BC4670012BA5A /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7BFAE92C1BC4670012BA5A /* AddEntryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +51,14 @@
 		FB2D68282C1A5BBD0015F2A2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FB2D682A2C1A6CB20015F2A2 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		FB2D682C2C1A70580015F2A2 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		FB7BFADB2C1BB6EE0012BA5A /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
+		FB7BFADD2C1BB79C0012BA5A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		FB7BFADF2C1BC2330012BA5A /* JournalEntriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntriesView.swift; sourceTree = "<group>"; };
+		FB7BFAE12C1BC2490012BA5A /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
+		FB7BFAE32C1BC2CF0012BA5A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		FB7BFAE52C1BC2E80012BA5A /* MonthSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSelectorView.swift; sourceTree = "<group>"; };
+		FB7BFAE72C1BC3580012BA5A /* JournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryView.swift; sourceTree = "<group>"; };
+		FB7BFAE92C1BC4670012BA5A /* AddEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +106,14 @@
 				FB2D68282C1A5BBD0015F2A2 /* HomeView.swift */,
 				FB2D682A2C1A6CB20015F2A2 /* RoundedCorners.swift */,
 				FB2D682C2C1A70580015F2A2 /* BottomSheetView.swift */,
+				FB7BFADB2C1BB6EE0012BA5A /* NavigationModel.swift */,
+				FB7BFADD2C1BB79C0012BA5A /* ProfileView.swift */,
+				FB7BFADF2C1BC2330012BA5A /* JournalEntriesView.swift */,
+				FB7BFAE12C1BC2490012BA5A /* JournalEntry.swift */,
+				FB7BFAE32C1BC2CF0012BA5A /* HeaderView.swift */,
+				FB7BFAE52C1BC2E80012BA5A /* MonthSelectorView.swift */,
+				FB7BFAE72C1BC3580012BA5A /* JournalEntryView.swift */,
+				FB7BFAE92C1BC4670012BA5A /* AddEntryView.swift */,
 			);
 			path = myday;
 			sourceTree = "<group>";
@@ -192,15 +216,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB7BFAE02C1BC2330012BA5A /* JournalEntriesView.swift in Sources */,
 				FB2D68172C1A51190015F2A2 /* MainScreen.swift in Sources */,
 				FB2D682D2C1A70580015F2A2 /* BottomSheetView.swift in Sources */,
 				FB2D68112C1999EE0015F2A2 /* LoginView.swift in Sources */,
+				FB7BFAE62C1BC2E80012BA5A /* MonthSelectorView.swift in Sources */,
+				FB7BFAE82C1BC3580012BA5A /* JournalEntryView.swift in Sources */,
 				FB2D68272C1A5AF70015F2A2 /* CustomTabBar.swift in Sources */,
+				FB7BFADE2C1BB79C0012BA5A /* ProfileView.swift in Sources */,
 				FB2D68132C199A0C0015F2A2 /* RegisterView.swift in Sources */,
 				FB2D68052C1995CE0015F2A2 /* ContentView.swift in Sources */,
+				FB7BFADC2C1BB6EE0012BA5A /* NavigationModel.swift in Sources */,
 				FB2D68292C1A5BBD0015F2A2 /* HomeView.swift in Sources */,
+				FB7BFAE42C1BC2CF0012BA5A /* HeaderView.swift in Sources */,
 				FB2D68152C199CBF0015F2A2 /* TypingAnimationModifier.swift in Sources */,
 				FB2D682B2C1A6CB20015F2A2 /* RoundedCorners.swift in Sources */,
+				FB7BFAEA2C1BC4670012BA5A /* AddEntryView.swift in Sources */,
+				FB7BFAE22C1BC2490012BA5A /* JournalEntry.swift in Sources */,
 				FB2D68032C1995CE0015F2A2 /* mydayApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
