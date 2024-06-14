@@ -3,6 +3,9 @@ const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/users");
 const entryRoutes = require("./routes/entries");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = express();
 

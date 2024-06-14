@@ -43,19 +43,13 @@ struct LoginView: View {
                     // Username Field
                     TextField("Username", text: $username)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(15)
-                        .padding(.horizontal, 20)
-
+                        .focused($isUsernameFocused)
+                    
                     // Password Field
                     SecureField("Password", text: $password)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(15)
-                        .padding(.horizontal, 20)
-
+                        .focused($isPasswordFocused)
+                    
                     // Login Button
                     Button(action: {
                         loginUser()
