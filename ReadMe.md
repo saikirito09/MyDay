@@ -60,6 +60,29 @@ The project is divided into two main parts:
 - **Login**: Enter your username and password, then tap the "Login" button to access your account.
 - **Register**: Tap "Don't have an account? Register" to create a new account. Fill in your details and tap "Register".
 
+## Screenshots
+
+### Start Screen
+<img src="https://github.com/saikirito09/MyDay/blob/main/screenshots/1.png" alt="Start Screen" width="300"/>
+
+### Register Screen
+<img src="https://github.com/saikirito09/MyDay/blob/main/screenshots/3.jpeg" alt="Register Screen" width="300"/>
+
+### Login Screen
+<img src="https://github.com/saikirito09/MyDay/blob/main/screenshots/2.jpeg" alt="Login Screen" width="300"/>
+
+### Home Screen
+<img src="https://github.com/saikirito09/MyDay/blob/main/screenshots/4.png" alt="Home Screen" width="300"/>
+
+### Posting Screen
+<img src="https://github.com/saikirito09/MyDay/blob/main/screenshots/5.png" alt="Post Screen" width="300"/>
+
+
+### Journal Entry Screen
+![Journal Entry Screen](path/to/journal_entry_screen.png)
+- Create a new journal entry by text or audio (limited to 2-minute audio or 100 words).
+- Save your entry by tapping the "Save" button.
+
 ## License
 
 This project is licensed under the MIT License.
